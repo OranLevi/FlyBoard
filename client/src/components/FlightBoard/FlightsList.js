@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import Error from '../Error';
+import Loading from '../Loading';
+import NotFound from "../NotFound";
 
 const FlightList = (props) => {
 
@@ -26,6 +29,18 @@ const FlightList = (props) => {
             } else if (queryParams.has('City')) {
                 const city = queryParams.get('City');
                 return item.CHCINT === null && item.CHCKZN === null && item.CHLOC1T === city;
+            } else if (queryParams.has('Search')) {
+                const search = queryParams.get('Search');
+                const flightNumber = item.CHOPER + item.CHFLTN
+                const flightNumberSpace = item.CHOPER + " " + item.CHFLTN
+                return (
+                    (item.CHCINT === null && item.CHCKZN === null && item.CHLOCCT.includes(search.toUpperCase())) ||
+                    (item.CHCINT === null && item.CHCKZN === null && item.CHOPERD.includes(search.toUpperCase())) ||
+                    (item.CHCINT === null && item.CHCKZN === null && item.CHOPERD.includes(search.toUpperCase())) ||
+                    (item.CHCINT === null && item.CHCKZN === null && item.CHLOC1T.includes(search.toUpperCase())) ||
+                    (item.CHCINT === null && item.CHCKZN === null && flightNumber.includes(search.toUpperCase())) ||
+                    (item.CHCINT === null && item.CHCKZN === null && flightNumberSpace.includes(search.toUpperCase()))
+                );
             } else {
                 return item.CHCINT === null && item.CHCKZN === null;
             }
@@ -34,7 +49,6 @@ const FlightList = (props) => {
         return (
             <>
                 <table className="w-full text-center border-collapse border border-slate-400">
-
                     <thead>
                         <tr className="h-12">
                             <th className="border border-slate-300 ">Airline Company</th>
@@ -47,6 +61,7 @@ const FlightList = (props) => {
                         </tr>
                     </thead>
                     <tbody>
+
                         {filteredData
                             .slice(0, numToShow)
                             .map((item, index) => (
@@ -60,11 +75,17 @@ const FlightList = (props) => {
                                     <td className="border border-none">{item.CHRMINE}</td>
                                 </tr>
                             ))}
+
                     </tbody>
+
                 </table>
+
                 {numToShow < filteredData.length &&
                     <button className="bg-blue-500 w-full hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded mt-4" onClick={handleLoadMore}>Load More</button>
                 }
+                {props.isLoading && <Loading />}
+                {!props.isLoading && filteredData.length === 0 && !queryParams.get('Search') && <Error />}
+                {!props.isLoading && filteredData.length === 0 && queryParams.get('Search') && <NotFound />}
             </>
         );
     }
@@ -87,6 +108,18 @@ const FlightList = (props) => {
             } else if (queryParams.has('City')) {
                 const city = queryParams.get('City');
                 return item.CHCINT !== null && item.CHCKZN !== null && item.CHLOC1T === city;
+            } else if (queryParams.has('Search')) {
+                const search = queryParams.get('Search');
+                const flightNumber = item.CHOPER + item.CHFLTN
+                const flightNumberSpace = item.CHOPER + " " + item.CHFLTN
+                return (
+                    (item.CHCINT !== null && item.CHCKZN !== null && item.CHLOCCT.includes(search.toUpperCase())) ||
+                    (item.CHCINT !== null && item.CHCKZN !== null && item.CHOPERD.includes(search.toUpperCase())) ||
+                    (item.CHCINT !== null && item.CHCKZN !== null && item.CHOPERD.includes(search.toUpperCase())) ||
+                    (item.CHCINT !== null && item.CHCKZN !== null && item.CHLOC1T.includes(search.toUpperCase())) ||
+                    (item.CHCINT !== null && item.CHCKZN !== null && flightNumber.includes(search.toUpperCase())) ||
+                    (item.CHCINT !== null && item.CHCKZN !== null && flightNumberSpace.includes(search.toUpperCase()))
+                )
             } else {
                 return item.CHCINT !== null && item.CHCKZN !== null;
             }
@@ -129,6 +162,9 @@ const FlightList = (props) => {
                 {numToShow < filteredData.length &&
                     <button className="bg-blue-500 w-full hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded mt-4" onClick={handleLoadMore}>Load More</button>
                 }
+                {props.isLoading && <Loading />}
+                {!props.isLoading && filteredData.length === 0 && !queryParams.get('Search') && <Error />}
+                {!props.isLoading && filteredData.length === 0 && queryParams.get('Search') && <NotFound />}
             </>
 
         );

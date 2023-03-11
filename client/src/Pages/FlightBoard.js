@@ -7,14 +7,17 @@ import FlightList from "../components/FlightBoard/FlightsList";
 const FlightBoard = () => {
 
     const [data, setData] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         async function fetchData() {
             try {
                 const response = await axios.get(`http://localhost:3001/flights`);
                 setData(response.data.result.records);
+                setIsLoading(false)
             } catch (error) {
                 console.error(error);
+                setIsLoading(false)
             }
         }
         fetchData();
@@ -22,8 +25,8 @@ const FlightBoard = () => {
 
     return (
         <>
-            <FlightBoardFilter flightData={data} />
-            <FlightList flightData={data} />
+            <FlightBoardFilter flightData={data} isLoading={isLoading} />
+            <FlightList flightData={data} isLoading={isLoading} />
         </>
     );
 }
