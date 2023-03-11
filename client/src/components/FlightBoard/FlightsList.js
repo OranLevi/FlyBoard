@@ -51,12 +51,12 @@ const FlightList = (props) => {
                 <table className="w-full text-center border-collapse border border-slate-400">
                     <thead>
                         <tr className="h-12">
-                            <th className="border border-slate-300 ">Airline Company</th>
+                            <th className="border border-slate-300 sm: hidden">Airline Company</th>
                             <th className="border border-slate-300 ">Flight Number</th>
                             <th className="border border-slate-300 ">Coming From</th>
-                            <th className="border border-slate-300 ">City</th>
-                            <th className="border border-slate-300 ">Scheduled time</th>
-                            <th className="border border-slate-300 ">Estimated time</th>
+                            <th className="border border-slate-300 sm: hidden">City</th>
+                            <th className="border border-slate-300 sm: hidden">Scheduled time</th>
+                            <th className="border border-slate-300">Estimated time</th>
                             <th className="border border-slate-300 ">Status</th>
                         </tr>
                     </thead>
@@ -66,11 +66,11 @@ const FlightList = (props) => {
                             .slice(0, numToShow)
                             .map((item, index) => (
                                 <tr className="h-12" key={index}>
-                                    <td className="border border-none">{item.CHOPERD}</td>
+                                    <td className="border border-none sm: hidden">{item.CHOPERD}</td>
                                     <td className="border border-none">{item.CHOPER} {item.CHFLTN}</td>
                                     <td className="border border-none">{item.CHLOCCT}</td>
-                                    <td className="border border-none">{item.CHLOC1T}</td>
-                                    <td className="border border-none">{new Date(item.CHPTOL).toLocaleDateString('en-US') + ' ' + new Date(item.CHPTOL).toLocaleTimeString('en-US', options)}</td>
+                                    <td className="border border-none sm: hidden">{item.CHLOC1T}</td>
+                                    <td className="border border-none sm: hidden">{new Date(item.CHPTOL).toLocaleDateString('en-US') + ' ' + new Date(item.CHPTOL).toLocaleTimeString('en-US', options)}</td>
                                     <td className="border border-none">{new Date(item.CHSTOL).toLocaleDateString('en-US') + ' ' + new Date(item.CHSTOL).toLocaleTimeString('en-US', options)}</td>
                                     <td className="border border-none">{item.CHRMINE}</td>
                                 </tr>
@@ -130,13 +130,13 @@ const FlightList = (props) => {
                 <table className="w-full text-center border-collapse border border-slate-400">
                     <thead>
                         <tr className="h-12">
-                            <th className="border border-slate-300 ">Airline Company</th>
+                            <th className="border border-slate-300 sm: hidden">Airline Company</th>
                             <th className="border border-slate-300 ">Flight Number</th>
                             <th className="border border-slate-300 ">{location.pathname.includes("Departures") && "Departing To"}{location.pathname.includes("Arrivals") && "Coming From"}</th>
-                            <th className="border border-slate-300 ">City</th>
-                            <th className="border border-slate-300 ">Terminal</th>
-                            <th className="border border-slate-300 ">Counter Area</th>
-                            <th className="border border-slate-300 ">Scheduled time</th>
+                            <th className="border border-slate-300 sm: hidden">City</th>
+                            <th className="border border-slate-300 sm: hidden">Terminal</th>
+                            <th className="border border-slate-300 sm: hidden">Counter Area</th>
+                            <th className="border border-slate-300 sm: hidden">Scheduled time</th>
                             <th className="border border-slate-300 ">Estimated time</th>
                             <th className="border border-slate-300 ">Status</th>
                         </tr>
@@ -146,15 +146,15 @@ const FlightList = (props) => {
                             .slice(0, numToShow)
                             .map((item, index) => (
                                 <tr className="h-12" key={index}>
-                                    <td className="border border-none">{item.CHOPERD}</td>
+                                    <td className="border border-none sm: hidden">{item.CHOPERD}</td>
                                     <td className="border border-none">{item.CHOPER} {item.CHFLTN}</td>
                                     <td className="border border-none">{item.CHLOCCT}</td>
-                                    <td className="border border-none">{item.CHLOC1T}</td>
-                                    <td className="border border-none">{item.CHTERM}</td>
-                                    <td className="border border-none">{item.CHCINT}</td>
-                                    <td className="border border-none">{new Date(item.CHPTOL).toLocaleDateString('en-US') + ' ' + new Date(item.CHPTOL).toLocaleTimeString('en-US', options)}</td>
-                                    <td className="border border-none">{new Date(item.CHSTOL).toLocaleDateString('en-US') + ' ' + new Date(item.CHSTOL).toLocaleTimeString('en-US', options)}</td>
-                                    <td className="border border-none">{item.CHRMINE}</td>
+                                    <td className="border border-none sm: hidden">{item.CHLOC1T}</td>
+                                    <td className="border border-none sm: hidden">{item.CHTERM}</td>
+                                    <td className="border border-none sm: hidden">{item.CHCINT}</td>
+                                    <td className="border border-none sm: hidden">{new Date(item.CHPTOL).toLocaleDateString('en-US') + ' ' + new Date(item.CHPTOL).toLocaleTimeString('en-US', options)}</td>
+                                    <td className="border border-none ">{new Date(item.CHSTOL).toLocaleDateString('en-US') + ' ' + new Date(item.CHSTOL).toLocaleTimeString('en-US', options)}</td>
+                                    <td className="border border-none ">{item.CHRMINE}</td>
                                 </tr>
                             ))}
                     </tbody>

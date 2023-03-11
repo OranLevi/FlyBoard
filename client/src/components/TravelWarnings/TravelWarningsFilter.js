@@ -71,10 +71,10 @@ const TravelWarningsFilter = (props) => {
                     <div className="mt-5">
                         <div className="grid grid-cols-3 gap-4 mx-4 ">
 
-                            <div className="">
+                            <div className="relative">
                                 <label className="pb-2 text-center block text-sm font-medium text-gray-900 dark:text-white">Select a Continent</label>
 
-                                <select value={selectedContinent} onChange={handleContinentChange} disabled={props.isLoading} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <select value={selectedContinent} onChange={handleContinentChange} disabled={props.isLoading} className="bg-gray-50 border absolute bottom-0 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option value={""}>Choose a Continent</option>
                                     <option>אירופה</option>
                                     <option>אמריקה</option>
@@ -84,20 +84,20 @@ const TravelWarningsFilter = (props) => {
                                 </select>
 
                             </div>
-                            <div className="">
+                            <div className="relative">
                                 <label className="pb-2 text-center block text-sm font-medium text-gray-900 dark:text-white">Select a Country</label>
 
-                                <select value={selectedCountry} onChange={handleCountryChange} disabled={props.isLoading} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <select value={selectedCountry} onChange={handleCountryChange} disabled={props.isLoading} className="bg-gray-50 border bsolute bottom-0 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option value={""}>Choose a Country</option>
                                     {[...new Set(props.travelWarningData.map(item => item.country))].sort().map((item, index) => (
                                         <option key={index}>{item}</option>
                                     ))}
                                 </select>
                             </div>
-                            <div className="">
+                            <div className="relative">
                                 <label className="pb-2 text-center block text-sm font-medium text-gray-900 dark:text-white">Select a Office</label>
 
-                                <select value={selectedOffice} onChange={handleOfficeChange} disabled={props.isLoading} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <select value={selectedOffice} onChange={handleOfficeChange} disabled={props.isLoading} className="bg-gray-50 border absolute bottom-0 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option value={""}>Choose a Office</option>
                                     {[...new Set(props.travelWarningData.map(item => item.משרד))].sort().map((item, index) => (
                                         <option key={index}>{item}</option>

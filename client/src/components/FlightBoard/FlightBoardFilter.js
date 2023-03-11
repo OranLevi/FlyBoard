@@ -85,10 +85,10 @@ const FlightBoardFilter = (props) => {
                 <div className="box-border border-4 box-flight-board-filter">
                     <div className="mt-5">
                         <div className="grid grid-cols-3 gap-4 mx-4 ">
-                            <div className="">
+                            <div className="relative">
                                 <label className="pb-2 text-center block text-sm font-medium text-gray-900 dark:text-white">Select a country</label>
                                 <select value={selectedCountry} onChange={handleCountryChange} disabled={props.isLoading}
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    className="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option value={""}>Choose a country</option>
                                     {[...new Set(props.flightData.map(item => item.CHLOCCT))].sort().map((item, index) => (
                                         <option key={index}>{item}</option>
@@ -96,10 +96,10 @@ const FlightBoardFilter = (props) => {
                                 </select>
 
                             </div>
-                            <div className="">
+                            <div className="relative">
                                 <label className="pb-2 text-center block text-sm font-medium text-gray-900 dark:text-white">Select a airleins</label>
 
-                                <select value={selectedAirlines} onChange={handleAirlinesChange} disabled={props.isLoading} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <select value={selectedAirlines} onChange={handleAirlinesChange} disabled={props.isLoading} className="bg-gray-50 border absolute bottom-0 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option value={""}>Choose a Airlines</option>
                                     {[...new Set(props.flightData.map(item => item.CHOPERD))].sort().map((item, index) => (
                                         <option key={index}>{item}</option>
@@ -107,9 +107,9 @@ const FlightBoardFilter = (props) => {
 
                                 </select>
                             </div>
-                            <div className="">
+                            <div className="relative">
                                 <label className="pb-2 text-center block text-sm font-medium text-gray-900 dark:text-white">Select a city</label>
-                                <select value={selectedCity} onChange={handleCityChange} disabled={props.isLoading} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <select value={selectedCity} onChange={handleCityChange} disabled={props.isLoading} className="bg-gray-50 border absolute bottom-0 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option value={""}>Choose a city</option>
                                     {[...new Set(props.flightData.map(item => item.CHLOC1T))].sort().map((item, index) => (
                                         <option key={index}>{item}</option>

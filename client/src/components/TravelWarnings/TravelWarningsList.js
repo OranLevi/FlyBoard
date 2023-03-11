@@ -48,7 +48,7 @@ const TravelWarningsList = (props) => {
                         <table className="w-full text-center border-collapse border border-slate-400">
                             <thead>
                                 <tr className="h-12">
-                                    <th className="border border-slate-300 ">Continent</th>
+                                    <th className="border border-slate-300 sm: hidden">Continent</th>
                                     <th className="border border-slate-300 ">Country</th>
                                     <th className="border border-slate-300 " style={{ width: "500px" }}>Recommendations</th>
                                     <th className="border border-slate-300 ">Date</th>
@@ -60,7 +60,7 @@ const TravelWarningsList = (props) => {
 
                                 {filteredData.slice(0, numToShow).map((item, index) => {
                                     return <tr className="h-12" key={index}>
-                                        <td className="border border-none">{item.continent}</td>
+                                        <td className="border border-none sm: hidden">{item.continent}</td>
                                         <td className="border border-none">{item.country}</td>
                                         <td className="border border-none">{item.recommendations.replace(/(<([^>]+)>)/gi, "")}</td>
                                         <td className="border border-none">{item.date ? new Date(item.date).toLocaleDateString('he-IL') + ' ' + new Date(item.date).toLocaleTimeString('en-US', options) : "N/A"}</td>
