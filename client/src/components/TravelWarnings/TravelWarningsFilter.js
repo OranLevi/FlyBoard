@@ -1,4 +1,55 @@
+import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+
 const TravelWarningsFilter = (props) => {
+
+    const navigate = useNavigate();
+
+    const [selectedContinent, setSelectedContinent] = useState('');
+    const [selectedCountry, setSelectedCountry] = useState('');
+    const [selectedOffice, setSelectedOffice] = useState('');
+
+    const handleCountryChange = (event) => {
+        if (event.target.value === "default") {
+            setSelectedCountry("");
+        } else {
+            const selectedValue = event.target.value;
+            setSelectedCountry(selectedValue);
+            navigate({
+                search: selectedValue ? `?Country=${selectedValue}` : "",
+            });
+            setSelectedContinent("")
+            setSelectedOffice("")
+        }
+    };
+
+    const handleContinentChange = (event) => {
+        if (event.target.value === "default") {
+            setSelectedContinent("");
+        } else {
+            const selectedValue = event.target.value;
+            setSelectedContinent(selectedValue);
+            navigate({
+                search: selectedValue ? `?Continent=${selectedValue}` : "",
+            });
+            setSelectedCountry("")
+            setSelectedOffice("")
+        }
+    };
+
+    const handleOfficeChange = (event) => {
+        if (event.target.value === "default") {
+            setSelectedOffice("");
+        } else {
+            const selectedValue = event.target.value;
+            setSelectedOffice(selectedValue);
+            navigate({
+                search: selectedValue ? `?Office=${selectedValue}` : "",
+            });
+            setSelectedCountry("")
+            setSelectedContinent("")
+        }
+    };
 
     return (
         <>
@@ -10,8 +61,8 @@ const TravelWarningsFilter = (props) => {
                             <div className="">
                                 <label className="pb-2 text-center block text-sm font-medium text-gray-900 dark:text-white">Select a Continent</label>
 
-                                <select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <option defaultValue>Choose a Continent</option>
+                                <select value={selectedContinent} onChange={handleContinentChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option value={""}>Choose a Continent</option>
                                     <option>אירופה</option>
                                     <option>אמריקה</option>
                                     <option>אסיה</option>
@@ -23,8 +74,8 @@ const TravelWarningsFilter = (props) => {
                             <div className="">
                                 <label className="pb-2 text-center block text-sm font-medium text-gray-900 dark:text-white">Select a Country</label>
 
-                                <select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <option defaultValue>Choose a Country</option>
+                                <select  value={selectedCountry} onChange={handleCountryChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option value={""}>Choose a Country</option>
                                     {[...new Set(props.travelWarningData.map(item => item.country))].sort().map((item, index) => (
                                         <option key={index}>{item}</option>
                                     ))}
@@ -33,8 +84,8 @@ const TravelWarningsFilter = (props) => {
                             <div className="">
                                 <label className="pb-2 text-center block text-sm font-medium text-gray-900 dark:text-white">Select a Office</label>
 
-                                <select id="city" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <option defaultValue>Choose a Office</option>
+                                <select  value={selectedOffice} onChange={handleOfficeChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option value={""}>Choose a Office</option>
                                     {[...new Set(props.travelWarningData.map(item => item.משרד))].sort().map((item, index) => (
                                         <option key={index}>{item}</option>
                                     ))}
