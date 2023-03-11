@@ -1,23 +1,31 @@
+import { useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+
 const NavBar = () => {
+
+    const navigate = useNavigate();
+    const location = useLocation();
+
     return (
         <>
             <div className="container mx-auto mt-16">
                 <div className="grid place-items-center ">
-                    <ul className="mb-5 flex list-none flex-col flex-wrap pl-0 md:flex-row" role="tablist" data-te-nav-ref>
+                    <ul className="mb-5 flex list-none flex-col flex-wrap pl-0 md:flex-row">
                         <li className="flex-auto text-center">
-                            <a href="/flightsBoard/Arrivals" className="my-2 block rounded bg-sky-200 px-7 pt-4 pb-3.5 text-xs font-medium uppercase leading-tight md:mr-4" id="pills-home-tab01" data-te-toggle="pill" data-te-target="#pills-home01" data-te-nav-active role="tab" aria-controls="pills-home01" aria-selected="true">
+                            <Link onClick={(e) => { e.preventDefault(); navigate("/flightsBoard/Arrivals"); }} className={`${location.pathname.includes("Arrivals") && "bg-sky-200"} my-2 block rounded px-7 pt-4 pb-3.5 text-xs font-medium uppercase leading-tight md:mr-4`}>
                                 Arrivals
-                            </a>
+                            </Link>
                         </li>
+
                         <li className="flex-auto text-center">
-                            <a href="/flightsBoard/Departures" className="my-2 block rounded bg-neutral-100 px-7 pt-4 pb-3.5 text-xs font-medium uppercase leading-tight text-neutral-500 md:mr-4" id="pills-profile-tab01" >
+                            <Link onClick={(e) => { e.preventDefault(); navigate("/flightsBoard/Departures"); }} className={`${location.pathname.includes("Departures") && "bg-sky-200"} my-2 block rounded px-7 pt-4 pb-3.5 text-xs font-medium uppercase leading-tight md:mr-4`} >
                                 Departures
-                            </a>
+                            </Link>
                         </li>
                         <li className="flex-auto text-center">
-                            <a href="/travelWarnings" className="my-2 block rounded bg-neutral-100 px-7 pt-4 pb-3.5 text-xs font-medium uppercase leading-tight text-neutral-500 md:mr-4" id="pills-profile-tab01" >
+                            <Link onClick={(e) => { e.preventDefault(); navigate("/travelWarnings"); }} className={`${location.pathname.includes("travelWarnings") && "bg-sky-200"} my-2 block rounded px-7 pt-4 pb-3.5 text-xs font-medium uppercase leading-tight md:mr-4`} >
                                 Travel warnings
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </div>

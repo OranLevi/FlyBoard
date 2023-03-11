@@ -1,4 +1,15 @@
-const TravelWarningsList = () => {
+import { useState } from "react";
+
+const TravelWarningsList = (props) => {
+
+    const options = { hour: 'numeric', minute: 'numeric', hour12: false }
+
+    const [numToShow, setNumToShow] = useState(10);
+    
+    const handleLoadMore = () => {
+        setNumToShow(numToShow + 10);
+    };
+
     return (
         <>
             <div className="grid place-items-center mt-5">
@@ -10,30 +21,27 @@ const TravelWarningsList = () => {
                                     <th className="border border-slate-300 ">Continent</th>
                                     <th className="border border-slate-300 ">Country</th>
                                     <th className="border border-slate-300 ">Recommendations</th>
+                                    <th className="border border-slate-300 ">Date</th>
                                     <th className="border border-slate-300 ">Office</th>
                                 </tr>
                             </thead>
+
                             <tbody>
-                                <tr className="h-12">
-                                    <td className="border border-none">Indiana</td>
-                                    <td className="border border-none">Indianapolis</td>
-                                    <td className="border border-none">Indianapolis</td>
-                                    <td className="border border-none">Indianapolis</td>
+
+                            {props.travelWarningData.slice(0, numToShow).map((item, index) => {
+                                return <tr className="h-12" key={index}>
+                                    <td className="border border-none">{item.continent}</td>
+                                    <td className="border border-none">{item.country}</td>
+                                    <td className="border border-none">{item.recommendations.replace(/(<([^>]+)>)/gi, "")}</td>
+                                    <td className="border border-none">{item.date ? new Date(item.date).toLocaleDateString('he-IL') + ' ' + new Date(item.date).toLocaleTimeString('en-US', options) : "N/A"}</td>
+                                    <td className="border border-none">{item.משרד}</td>
                                 </tr>
-                                <tr className="h-12">
-                                    <td className="border border-none">Ohio</td>
-                                    <td className="border border-none">Columbus</td>
-                                    <td className="border border-none">Ohio</td>
-                                    <td className="border border-none">Columbus</td>
-                                </tr>
-                                <tr className="h-12">
-                                    <td className="border border-none">Michigan</td>
-                                    <td className="border border-none">Detroit</td>
-                                    <td className="border border-none">Michigan</td>
-                                    <td className="border border-none">Detroit</td>
-                                </tr>
-                            </tbody>
+                            })}
+                             </tbody>
                         </table>
+                        {numToShow < props.travelWarningData.length &&
+                            <button className="bg-blue-500 w-full hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded mt-4" onClick={handleLoadMore}>Load More</button>
+                        }
                     </div>
                 </div>
             </div>

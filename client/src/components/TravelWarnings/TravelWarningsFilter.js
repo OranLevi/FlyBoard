@@ -1,46 +1,46 @@
-const TravelWarningsFilter = () => {
+const TravelWarningsFilter = (props) => {
+
     return (
         <>
             <div className="grid place-items-center">
                 <div className="box-border border-4 box-flight-board-filter">
                     <div className="mt-5">
-                    <div className="grid grid-cols-3 gap-4 mx-4 ">
-                        
-                        <div className="">
-                            <label className="pb-2 text-center block text-sm font-medium text-gray-900 dark:text-white">Select a Continent</label>
+                        <div className="grid grid-cols-3 gap-4 mx-4 ">
 
-                            <select id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option defaultValue>Choose a Continent</option>
-                                <option value="US">United States</option>
-                                <option value="CA">Canada</option>
-                                <option value="FR">France</option>
-                                <option value="DE">Germany</option>
-                            </select>
+                            <div className="">
+                                <label className="pb-2 text-center block text-sm font-medium text-gray-900 dark:text-white">Select a Continent</label>
 
+                                <select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option defaultValue>Choose a Continent</option>
+                                    <option>אירופה</option>
+                                    <option>אמריקה</option>
+                                    <option>אסיה</option>
+                                    <option>אפריקה</option>
+                                    <option>פאסיפיק</option>
+                                </select>
+
+                            </div>
+                            <div className="">
+                                <label className="pb-2 text-center block text-sm font-medium text-gray-900 dark:text-white">Select a Country</label>
+
+                                <select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option defaultValue>Choose a Country</option>
+                                    {[...new Set(props.travelWarningData.map(item => item.country))].sort().map((item, index) => (
+                                        <option key={index}>{item}</option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div className="">
+                                <label className="pb-2 text-center block text-sm font-medium text-gray-900 dark:text-white">Select a Office</label>
+
+                                <select id="city" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option defaultValue>Choose a Office</option>
+                                    {[...new Set(props.travelWarningData.map(item => item.משרד))].sort().map((item, index) => (
+                                        <option key={index}>{item}</option>
+                                    ))}
+                                </select>
+                            </div>
                         </div>
-                        <div className="">
-                            <label className="pb-2 text-center block text-sm font-medium text-gray-900 dark:text-white">Select a Country</label>
-
-                            <select id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option defaultValue>Choose a Country</option>
-                                <option value="US">United States</option>
-                                <option value="CA">Canada</option>
-                                <option value="FR">France</option>
-                                <option value="DE">Germany</option>
-                            </select>
-                        </div>
-                        <div className="">
-                            <label className="pb-2 text-center block text-sm font-medium text-gray-900 dark:text-white">Select a Office</label>
-
-                            <select id="city" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option defaultValue>Choose a Office</option>
-                                <option value="US">United States</option>
-                                <option value="CA">Canada</option>
-                                <option value="FR">France</option>
-                                <option value="DE">Germany</option>
-                            </select>
-                        </div>
-                    </div>
                     </div>
                     <form className="mt-5 mx-4">
                         <label className="text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
